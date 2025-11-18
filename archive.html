@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sudan Digital Archive</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="archive-page lang-en" dir="ltr">
+
+  <nav class="memorial-nav">
+    <a href="index.html">
+      <span class="text-en">Home</span>
+      <span class="text-ar">الرئيسية</span>
+    </a>
+    <a href="support.html">
+      <span class="text-en">Support Sudan</span>
+      <span class="text-ar">ادعم السودان</span>
+    </a>
+    <a href="archive.html">
+      <span class="text-en">Archive</span>
+      <span class="text-ar">الأرشيف</span>
+    </a>
+
+    <!-- language toggle -->
+    <button id="toggleLang" class="lang-toggle">عربي</button>
+  </nav>
+
+  <div class="archive-container">
+
+    <div class="archive-wrapper">
+      <h1>
+        <span class="text-en">Sudan Digital Archive</span>
+        <span class="text-ar">الأرشيف الرقمي للسودان</span>
+      </h1>
+
+      <p class="archive-intro">
+        <span class="text-en">
+          A protected space for Sudanese people and those affected to share their experiences,
+          memories, and truths. These stories are part of a growing digital archive of witness.
+        </span>
+        <span class="text-ar">
+          مساحة آمنة للسودانيين ولمن تأثروا لمشاركة تجاربهم وذكرياتهم وحقائقهم.
+          هذه القصص جزء من أرشيف رقمي متنامٍ للشهود.
+        </span>
+      </p>
+
+      <!-- PASSWORD GATE -->
+      <div id="passwordGate">
+        <h3>
+          <span class="text-en">Enter Archive Password</span>
+          <span class="text-ar">أدخل كلمة مرور الأرشيف</span>
+        </h3>
+        <input
+          type="password"
+          id="archivePassword"
+          placeholder="Enter password..."
+        />
+        <button id="unlockArchive">
+          <span class="text-en">Unlock</span>
+          <span class="text-ar">فتح</span>
+        </button>
+        <p id="passwordError"></p>
+      </div>
+    </div>
+
+    <!-- UNLOCKED ARCHIVE AREA -->
+    <div id="archiveContent" class="hidden">
+
+      <!-- STORY SUBMISSION -->
+      <div id="storySubmit">
+        <h2>
+          <span class="text-en">Share Your Experience</span>
+          <span class="text-ar">شارك تجربتك</span>
+        </h2>
+        <textarea
+          id="storyInput"
+          placeholder="Write your story..."
+        ></textarea>
+        <button id="submitStory">
+          <span class="text-en">Submit Story</span>
+          <span class="text-ar">إرسال القصة</span>
+        </button>
+      </div>
+
+      <!-- STORY LIST -->
+      <h2>
+        <span class="text-en">Archive Entries</span>
+        <span class="text-ar">المدخلات في الأرشيف</span>
+      </h2>
+      <div id="storyList"></div>
+
+      <a href="index.html" class="back-btn">
+        <span class="text-en">← Return to Memorial</span>
+        <span class="text-ar">← العودة إلى النصب التذكاري</span>
+      </a>
+    </div>
+
+  </div>
+
+  <script src="archive.js"></script>
+
+</body>
+</html>

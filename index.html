@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memorial – Whispers from Sudan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="memorial-page">
+
+  <div id="introScreen">
+    <h1 class="introText">A moment for the lives lost in Sudan</h1>
+  </div>
+
+  <nav class="memorial-nav">
+    <a href="index.html">Home</a>
+    <a href="support.html">Support Sudan</a>
+    <a href="archive.html">Archive</a>
+  </nav>
+
+  <audio id="backgroundSound" src="assets/sound.mp3" loop></audio>
+
+  <div id="shadowContainer"></div>
+
+  <button id="toggleOffering" class="toggle-offering">Close</button>
+
+  <div id="offering">
+    <h2>Leave a Message</h2>
+    <a href="support.html" class="support-link">Learn More / Support Sudan →</a>
+
+    <form id="offeringForm">
+      <textarea id="message" name="message" placeholder="Write a message..."></textarea>
+      <button id="sendOffering" type="submit">Send</button>
+    </form>
+
+    <p id="status" class="status"></p>
+
+    <p class="disclaimer">
+      Your words will be carried forward and sent privately to the keeper of this memorial,
+      held as part of an ongoing archive of offerings for Sudan.
+    </p>
+  </div>
+
+  <div id="tooltip" class="tooltip hidden"></div>
+
+  <script src="script_memorial.js"></script>
+</body>
+</html>

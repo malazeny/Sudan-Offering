@@ -1,0 +1,633 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+@font-face {
+    font-family: "Protest";
+    src: url("fonts/Protest.ttf");
+  }
+
+  @font-face {
+    font-family: "Brunson";
+    src: url("fonts/Brunson.ttf");
+  }
+/* -------- Global -------- */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: #fff;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+
+  input:focus,
+textarea:focus {
+    outline: none !important;
+    border: 1px solid green !important;
+}
+
+  /* Full-screen intro overlay */
+
+#introScreen {
+    position: fixed;
+    inset: 0;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeOut 2s ease forwards;
+    animation-delay: 3s;  /* how long text stays before fading */
+  }
+  
+  /* The intro text itself */
+  .introText {
+    color: green;
+    font-family: Brunson;
+    font-size: 4rem;
+    letter-spacing: 0.03em;
+    font-weight: 300;
+    opacity: 0;
+    animation: floatUp 5s ease forwards;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-80px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  body.memorial-page *:not(#introScreen):not(#introScreen *):not(#shadowContainer):not(#shadowContainer *) {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  
+  body.loaded *:not(#introScreen):not(#introScreen *):not(#shadowContainer):not(#shadowContainer *) {
+    opacity: 1;
+  }
+  
+
+  /******** Landing page ********/
+  
+  #landing {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  #landing h1 {
+    font-size: 2.7rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.03em;
+  }
+  
+  #landing p {
+    max-width: 480px;
+    color: #cccccc;
+    margin-bottom: 1.4rem;
+    line-height: 1.5;
+  }
+  
+  #landing button {
+    padding: 12px 26px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 999px;
+    border: 1px solid #333;
+    background: #111;
+    color: #fff;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  
+  #landing button:hover {
+    background: #1b1b1b;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  }
+  
+  /******** Memorial page ********/
+  
+  .memorial-page {
+    overflow: hidden;   /* memorial stays full-screen, no scroll */
+    background: radial-gradient(circle at center, #111 0%, #000 60%);
+  }
+  
+  #shadowContainer {
+    position: absolute;
+    inset: 0;
+  }
+  
+  /* shadow silhouettes */
+  #shadowContainer img.shadow {
+    position: absolute;
+    width: 80px;
+    opacity: 0;
+    transition: opacity 6s ease, transform 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+  }
+  
+  #shadowContainer img.visible {
+    opacity: 0.7;
+  }
+  
+  #shadowContainer img.shadow:hover {
+    transform: scale(1.15);
+  }
+  
+  /* Tooltip for victim info */
+
+.tooltip {
+    position: absolute;
+    padding: 6px 10px;
+    background: white;
+    color: black;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+    pointer-events: none;
+    z-index: 1000;
+    max-width: 220px;
+    white-space: nowrap;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* Offering panel */
+  
+  #offering {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);   /* ✅ center horizontally, Y = 0 */
+    text-align: center;
+    width: 90%;
+    max-width: 470px;
+    background: rgba(216, 213, 213, 0.65);
+    border-radius: 16px;
+    padding: 14px 18px 18px;
+    border: 1px solid rgba(170, 168, 168, 0.65);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+    transition: transform 0.4s ease, opacity 0.4s ease;  /* keep transitions here */
+  }
+  
+  #offering h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: green;
+  }
+  
+  #offering textarea {
+    width: 90%;
+    height: 90px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #8d8888;
+    background: rgba(255, 255, 255, 0.04);
+    color: black;
+    font-size: 0.95rem;
+    resize: none;
+    outline: none;
+    transition: border 0.2s ease, background 0.2s ease;
+  }
+  
+  #offering textarea::placeholder {
+    color: black;
+  }
+  
+  #offering textarea:focus {
+    border-color: green;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  
+  #offering button {
+    margin-top: 10px;
+    padding: 9px 20px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 999px;
+    border: 1px solid green;
+    background: #dbd9d9;
+    color: black;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  
+  #offering button:hover {
+    background: rgb(154, 176, 154);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Toggle button */
+.toggle-offering {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background: rgba(170, 168, 168, 0.75);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: black;
+    padding: 10px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    backdrop-filter: blur(6px);
+    transition: 0.25s ease;
+  }
+  
+  .toggle-offering:hover {
+    background: rgba(200, 200, 200, 0.85);
+  }
+  
+  
+  #offering.minimized {
+    transform: translate(-50%, 150%);  /* slide it more than its own height */
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  
+  /* Support link under the button */
+  
+  .support-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: black;
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+  
+  .support-link:hover {
+    color: red;
+  }
+  
+  
+  .status {
+    font-size: 0.8rem;
+    margin-top: 8px;
+    color: white;
+  }
+  
+  .disclaimer {
+    margin-top: 10px;
+    font-size: 0.75rem;
+    color: black;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+  }
+  
+  
+  .offering-message {
+    position: absolute;
+    color: red;
+    opacity: 1;
+    font-size: 2rem;
+    text-shadow: 0 0 10px rgb(171, 169, 169);
+    animation: floatUp 10s linear forwards;
+  }
+  
+  
+  @keyframes floatUp {
+    from {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-160px);
+      opacity: 0;
+    }
+  }
+  
+  /* -------- Support Page -------- */
+  
+  .support-page {
+    background: white;
+    color: black;
+    padding: 30px;
+    padding-top: 60px;
+    font-family: "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    overflow-y: auto;
+  }
+  
+  .support-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .support-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .support-container h2 {
+    margin-top: 30px;
+    font-size: 1.8rem;
+  }
+  
+  .intro, .section-description, .closing {
+    color: black;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .facts {
+    list-style: disc;
+    padding-left: 20px;
+    color: black;
+  }
+  
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 15px 0;
+  }
+  
+  .links a {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    border: 1px solid #222;
+  }
+  
+  .links a:hover {
+    background: rgb(130, 171, 130);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  }
+  
+  .back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    color: black;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .back-btn:hover {
+    color: rgb(130, 171, 130);
+  }
+
+  /* ---------- LANGUAGE TOGGLE ---------- */
+
+/* Default: show English, hide Arabic */
+.text-ar {
+  display: none;
+}
+
+/* When body has .lang-ar, show Arabic instead */
+.lang-ar .text-en {
+  display: none;
+}
+
+.lang-ar .text-ar {
+  display: inline;
+}
+
+/* For block elements like paragraphs/headings */
+.archive-intro .text-en,
+.archive-intro .text-ar {
+  display: none;
+}
+
+.lang-en .archive-intro .text-en {
+  display: block;
+}
+
+.lang-ar .archive-intro .text-ar {
+  display: block;
+}
+
+/* Language toggle button in nav */
+.lang-toggle {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 8px;
+  color: black;
+}
+
+.lang-toggle:hover {
+  color: green;
+}
+
+
+/* --- ARCHIVE PAGE LAYOUT --- */
+
+.archive-page {
+  background: white;
+  color: black;
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+.archive-container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.archive-page:not(.archive-unlocked) .archive-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
+  padding-top: 70px; 
+  box-sizing: border-box;
+}
+
+.archive-wrapper {
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.archive-page.archive-unlocked .archive-wrapper {
+  display: none;
+}
+
+#archiveContent {
+  max-width: 700px;
+  margin: 120px auto 40px auto;  
+  text-align: center;
+}
+
+.archive-intro {
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  color: #747272;
+}
+  
+  /* Password Gate */
+  
+  #passwordGate {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #000000;
+    max-width: 350px;
+  }
+  
+  #passwordGate input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    background: rgba(255,255,255,0.07);
+    color: black;
+  }
+  
+  #passwordGate button {
+    margin-top: 12px;
+    padding: 8px 14px;
+    background: #0f0f0f;
+    color: white;
+    border-radius: 8px;
+    border: 1px solid #444;
+    cursor: pointer;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .story-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #333;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: left; /* so text isn't centered */
+    position: relative;
+  }
+  
+  .story-card .deleteStory {
+    background: transparent;
+    border: 1px solid red;
+    color: red;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    float: right;
+    margin-top: 6px;
+  }
+  
+  .story-card .deleteStory:hover {
+    background: red;
+    color: white;
+  }
+  
+  /* Stories */
+  
+  #storySubmit {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+  }
+  
+  #storyInput {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    background: rgba(255,255,255,0.07);
+    color: black;
+    font-size: 1rem;
+    resize: none;
+  }
+  
+  #submitStory {
+    margin-top: 12px;
+    padding: 10px 18px;
+    background: #dbd9d9;
+    color: black;
+    border-radius: 10px;
+    border: 1px solid green;
+    cursor: pointer;
+  }
+
+  
+  .story-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #333;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .story-card p {
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+  }
+  
+  .story-date {
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  /* -------- Memorial Page Navigation -------- */
+
+.memorial-nav {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+    background: rgba(216, 213, 213, 0.65);
+    padding: 10px 22px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+    z-index: 999;
+  }
+  
+  .memorial-nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.2s ease;
+  }
+  
+  .memorial-nav a:hover {
+    color: green;
+  }
+  
+  
+  
+  
